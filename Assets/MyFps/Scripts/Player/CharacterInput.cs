@@ -62,6 +62,7 @@ namespace MyFps
 
         private void JumpInput(bool isJump)
         {
+            if(isJump == false) return;
             jump = isJump;
         }
 
