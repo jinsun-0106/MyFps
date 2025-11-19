@@ -2,9 +2,6 @@ using UnityEngine;
 
 namespace MySample
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class RetargetingTest : MonoBehaviour
     {
         #region Variables
