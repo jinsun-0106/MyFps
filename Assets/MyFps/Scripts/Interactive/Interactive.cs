@@ -1,16 +1,25 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 namespace MyFps
 {
     /// <summary>
-    /// 플레이어와 인터렉션 기능 오브젝트
-    /// 인터렉티브 : 마우스를 가져가면 UI 활성화 빼면 UI 비활성화
-    /// 인터렉션 기능 : 도어 오픈
+    /// 인터렉티브 오브젝트를 관리하는 클래스들의 부모 클래스
     /// </summary>
-    public class DoorCellOpen : MonoBehaviour
+    public abstract class Interactive : MonoBehaviour
     {
+        //추상 메서드
+        #region abstract
+        protected abstract void DoAction();
+
+        #endregion
+
         #region Variables
+        //참조
+        protected Collider collider;
+
+        //인터렉티브 UI
+        [Header ("Interactive UI")]
         //크로스헤어
         public GameObject extraCross;
 
@@ -19,25 +28,23 @@ namespace MyFps
         public TextMeshProUGUI actionText;
 
         [SerializeField]
-        private string action = "Open The Door";
+        protected string action = "Do Action";
 
-        //액션
-        public Animator animator;
-        private Collider collider;
+        //인터렉티브 액션
 
-        //애니메이션 파라미터
-        const string Open = "Open";
         #endregion
 
         #region Unity Event Method
-        private void Awake()
+        protected virtual void Awake()
         {
             //참조
             collider = GetComponent<Collider>();
         }
-        private void OnMouseOver()
+
+        protected virtual void OnMouseOver()
         {
-            if(PlayerCasting.distanceFromTarget > 2f)
+            //일정거리 이상되면 UI 숨김
+            if (PlayerCasting.distanceFromTarget > 2f)
             {
                 HideActionUI();
                 return;
@@ -48,43 +55,35 @@ namespace MyFps
             //만약 Action 버튼을 누르면
             if (Input.GetButtonDown("Action"))
             {
-                OpenDoor();
+                //Do Action 영역 - 인터렉티브 액션
+                DoAction();
+
+                //충돌체 제거
+                collider.enabled = false;
+
             }
+
         }
 
-        private void OnMouseExit()
+        protected virtual void OnMouseExit()
         {
             HideActionUI();
         }
-
         #endregion
 
         #region Custom Method
-        private void ShowActionUI()
+        protected virtual void ShowActionUI()
         {
             actionUI.SetActive(true);
             actionText.text = action;
             extraCross.SetActive(true);
         }
 
-        private void HideActionUI()
+        protected virtual void HideActionUI()
         {
             actionUI.SetActive(false);
             actionText.text = "";
             extraCross.SetActive(false);
-        }
-
-        void OpenDoor()
-        {
-            //UI 감추기
-            HideActionUI();
-
-            //애니메이션
-            animator.SetTrigger(Open);
-
-            //충돌체 기능 제거
-            collider.enabled = false;
-            
         }
 
         #endregion
