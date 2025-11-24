@@ -1,12 +1,9 @@
-using MyFps;
 using UnityEngine;
+using MyFps;
 
 namespace MySample2
 {
-    /// <summary>
-    /// 몬스터의 기본(부모) 클래스
-    /// </summary>
-    public class Monster : MonoBehaviour
+    public class Goblin : MonoBehaviour, IDamageable
     {
         #region Variables
         //체력
@@ -43,7 +40,7 @@ namespace MySample2
         private void Die()
         {
             isDeath = true;
-            
+
             //킬
             Destroy(gameObject);
         }

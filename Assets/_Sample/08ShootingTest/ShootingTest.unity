@@ -316,6 +316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMaxtHP: 20
+  enemyHP: 0
+  isDeath: 0
 --- !u!1001 &389817931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -961,6 +963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMaxtHP: 20
+  enemyHP: 0
+  isDeath: 0
 --- !u!1 &967930601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMaxtHP: 20
+  enemyHP: 0
+  isDeath: 0
 --- !u!114 &1715633913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,7 +1949,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 320a278b4d7c92447bb78d54649bc3d6, type: 2}
+  - {fileID: 2100000, guid: 16423f40e43e0094a95519d3704b2cdc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

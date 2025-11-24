@@ -101,11 +101,17 @@ namespace MyFps
                 }
 
                 //적에게 데미지 주기
-                Robot robot = hit.transform.GetComponent<Robot>();
+                /*Robot robot = hit.transform.GetComponent<Robot>();
                 if(robot)
                 {
                     robot.TakeDamage(attackDamage);
-                }
+                }*/
+                //hit 오브젝트에 IDamageable을 상속받은 컴포넌트가 있으면 데이지를 준다
+                IDamageable damageable = hit.transform.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(attackDamage);
+                }    
 
             }
 

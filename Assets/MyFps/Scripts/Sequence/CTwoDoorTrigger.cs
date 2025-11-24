@@ -2,23 +2,22 @@ using UnityEngine;
 
 namespace MyFps
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class CTwoDoorTrigger : MonoBehaviour
     {
         #region Variables
-        //충돌체
+        //참조: 충돌체
         private BoxCollider collider;
 
         //시퀀스
         public Door door;
 
+        public GameObject robot;
         #endregion
 
         #region Unity Event Method
         private void Awake()
         {
+            //참조
             collider = GetComponent<BoxCollider>();
         }
 
@@ -35,6 +34,7 @@ namespace MyFps
         private void SequencePlay()
         {
             door.Activate();
+            robot.SetActive(true);
         }
         #endregion
     }
