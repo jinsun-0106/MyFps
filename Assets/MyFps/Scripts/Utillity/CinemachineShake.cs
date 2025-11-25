@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;
 using System.Collections;
 
 namespace MyFps
@@ -10,27 +11,60 @@ namespace MyFps
     public class CinemachineShake : Singleton<CinemachineShake>
     {
         #region Variables
-        private CinemachineShake cinemachineShake;
+        //참조
+        private CinemachineBasicMultiChannelPerlin m_ChannelPerlin;
+
+        /*//카메라 흔들림 효과
+        [SerializeField] private float amplitude = 1f;           //흔들림 크기(세기)
+        [SerializeField] private float frequency = 1f;           //흔들림 속도
+        //흔들림 타이머
+        private float shakeTimer = 1f;
+        private float countdown = 0f;
+        밑에 매개변수, 코루틴으로 설정해놔서 없어도 됨
+         */
+
+        private bool isShake = false;                           //흔들림 체크
         #endregion
 
         #region Unity Event Method
         private void Start()
         {
-            cinemachineShake = GetComponent<CinemachineShake>();
+            //참조
+            m_ChannelPerlin = GetComponent<CinemachineBasicMultiChannelPerlin>();
+
+
         }
 
         private void Update()
         {
-            
+            //흔들림 효과 치트키
+            /*if(Input.GetKeyDown(KeyCode.G))
+            {
+                ShakeCamera(2f, 1f, 0.5f);
+            }*/
         }
         #endregion
 
         #region Custom Method
-        IEnumerator CameraShake()
+        //카메라 흔들기
+        public void ShakeCamera(float amplitude = 1f, float frequency = 1f, float shakeTimer = 1f)
         {
-            //흔들림 효과
+            if (isShake) return;
+            StartCoroutine(StartShake(amplitude, frequency, shakeTimer));
+        }
 
-            yield return new WaitForSeconds(1f);
+        IEnumerator StartShake(float amplitude, float frequency, float shakeTimer)
+        {
+            isShake = true;
+
+            m_ChannelPerlin.AmplitudeGain = amplitude;
+            m_ChannelPerlin.FrequencyGain = frequency;
+
+            yield return new WaitForSeconds(shakeTimer);
+
+            m_ChannelPerlin.AmplitudeGain = 0f;
+            m_ChannelPerlin.FrequencyGain = 0f;
+            isShake = false;
         }
         #endregion
     }

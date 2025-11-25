@@ -80,6 +80,8 @@ namespace MyFps
             }
 
             //화면 흔들림 효과
+            CinemachineShake.Instance.ShakeCamera(2f, 1f, 0.5f);
+
 
             yield return new WaitForSeconds(1.0f);
             damageUI.SetActive(false);

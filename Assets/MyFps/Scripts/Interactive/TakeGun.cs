@@ -17,6 +17,11 @@ namespace MyFps
         //화살표
         public GameObject theMarker;
 
+        //탄환 UI
+        public GameObject ammoCountUI;
+
+        public WeaponType weaponType = WeaponType.Pistol;
+
         #endregion
 
         #region Custom Method
@@ -28,11 +33,20 @@ namespace MyFps
             HideActionUI();
 
             //오브젝트 제거
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             theMarker.SetActive(false);
+
+            //현재 소지무기 세팅
+            PlayerStats.Instance.SetWeaponType(weaponType);
 
             //진짜 총 나옴
             realPistol.SetActive(true);
+
+            //AmmoCountUI 나옴
+            ammoCountUI.SetActive(true);
+
+            //아이템 킬
+            Destroy(gameObject);
 
         }
 

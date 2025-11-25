@@ -22,6 +22,9 @@ namespace MyFps
         [SerializeField]
         private string sequence = "Looks like a weapon on that table";
 
+        //오디오
+        public AudioSource line03;
+
         //화살표 오브젝트
         public GameObject arrow;
 
@@ -51,6 +54,7 @@ namespace MyFps
 
             //시나리오 텍스트 화면 출력, 1초 딜레이
             sequenceText.text = sequence;
+            line03.Play();
             yield return new WaitForSeconds(2f);
 
             //화살표 활성화, 1초 딜레이
