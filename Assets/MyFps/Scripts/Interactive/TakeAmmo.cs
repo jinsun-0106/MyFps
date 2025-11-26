@@ -12,6 +12,7 @@ namespace MyFps
         private int giveAmmo = 7;       //ammo 지급 갯수
         #endregion
 
+        
 
         #region Custom Method
 

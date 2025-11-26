@@ -1,4 +1,3 @@
-using Unity.Profiling.Editor;
 using UnityEngine;
 
 namespace MyFps
@@ -43,6 +42,7 @@ namespace MyFps
         private Transform thePlayer;
 
         //대기
+        [SerializeField]
         private float idleTimer = 2f;
         private float countdown = 0f;
 
@@ -53,6 +53,21 @@ namespace MyFps
         [SerializeField] private float attackTimer = 2.0f;
         //공격범위 : 1.5 안에 있으면 공격
         [SerializeField] private float attackRange = 2f;
+
+        //죽은뒤 리워드 - 탄환
+        public GameObject rewardAmmo;
+
+        #endregion
+
+        #region Property
+        //애니메이터의 파라미터값(CannotMove) 읽어오기
+        public bool CannotMove
+        {
+            get
+            {
+                return animator.GetBool("CannotMove");
+            }
+        }
 
         #endregion
 
@@ -171,6 +186,13 @@ namespace MyFps
             enemyHP -= damage;
             Debug.Log($"Robot HP: {enemyHP}");
 
+            animator.SetTrigger("IsHurt");
+
+            if(CannotMove)
+            {
+
+            }
+
             //죽음체크 - 두번 죽이지 마라
             if(enemyHP <= 0f && isDeath == false)
             {
@@ -185,6 +207,9 @@ namespace MyFps
 
             //죽는 상태로 변경
             SetState(RobotState.R_Death);
+
+            //리워드
+            Instantiate(rewardAmmo,this.transform.position,Quaternion.identity);
         }
 
         //공격

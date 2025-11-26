@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace MyFps
 {
@@ -12,7 +13,7 @@ namespace MyFps
 
         //체력
         private float playerHP;
-        private float playerMaxHP = 20f;
+        [SerializeField] private float playerMaxHP = 50f;
         private bool isDeath = false;
 
         //데미지 입을 때 등록된 함수 호출
@@ -20,6 +21,9 @@ namespace MyFps
 
         //죽었을 때 호출되는 함수 호출
         public UnityAction onDie;
+
+        //데미지 UI
+        public Image playerHPImage;
         #endregion
 
         #region Unity Event Method
@@ -40,6 +44,9 @@ namespace MyFps
 
             //데미지 이펙트
             onDamage?.Invoke();
+
+            //데미지 UI
+            playerHPImage.fillAmount = playerHP / playerMaxHP;
 
             //죽음체크 - 두번 죽이지 마라
             if (playerHP <= 0f && isDeath == false)

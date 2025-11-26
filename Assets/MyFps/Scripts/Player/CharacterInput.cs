@@ -50,6 +50,10 @@ namespace MyFps
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
             LookInput(mouseX, mouseY);
+
+            //뛰기 입력 처리
+            bool isRun = Input.GetButton("Run");
+            RunInput(isRun);
         }
 
         #endregion
@@ -69,6 +73,11 @@ namespace MyFps
         private void LookInput(float x, float y)
         {
             look = new Vector2(x, y);
+        }
+
+        private void RunInput(bool isRun)
+        {
+            sprint = isRun;
         }
 
         #endregion

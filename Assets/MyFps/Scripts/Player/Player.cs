@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using NUnit.Framework.Constraints;
 
 namespace MyFps
 {
@@ -93,7 +94,8 @@ namespace MyFps
             //게임오버 씬으로 이동
             Debug.Log("게임오버");
             fader.FadeTo(loadToScene);
-
+            PlayerStats.Instance.SetWeaponType(WeaponType.None);
+            
         }
 
         #endregion

@@ -16,7 +16,7 @@ namespace MyFps
         #region Unity Event Method
         private void Awake()
         {
-            //참조 - 부모 오브젝ㅌ트의 컴포넌트 가져오기
+            //참조 - 부모 오브젝트의 컴포넌트 가져오기
             robot = this.GetComponentInParent<Robot>();
         }
         #endregion

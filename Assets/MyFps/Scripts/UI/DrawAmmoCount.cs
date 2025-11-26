@@ -13,6 +13,7 @@ namespace MyFps
         private void Update()
         {
             ammoCountText.text = PlayerStats.Instance.AmmoCount.ToString();
+
         }
         #endregion
 

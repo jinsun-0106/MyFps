@@ -8,10 +8,6 @@ namespace MyFps
     /// </summary>
     public class DrawAmmoUI : MonoBehaviour
     {
-        #region Variables
-
-        #endregion
-
         #region Unity Event Method
         private void Start()
         {

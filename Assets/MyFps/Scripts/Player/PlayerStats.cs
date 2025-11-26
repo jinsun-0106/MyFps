@@ -38,6 +38,14 @@ namespace MyFps
             ammoCount = 0;
             weaponType = WeaponType.None;
         }
+
+        private void Update()
+        {
+            if (weaponType == WeaponType.None)
+            {
+                ammoCount = 0;
+            }
+        }
         #endregion
 
         #region Custom Method

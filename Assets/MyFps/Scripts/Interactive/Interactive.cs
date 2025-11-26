@@ -18,19 +18,11 @@ namespace MyFps
         //참조
         protected Collider collider;
 
-        //인터렉티브 UI
-        [Header ("Interactive UI")]
-        //크로스헤어
-        public GameObject extraCross;
-
-        //액션 UI
-        public GameObject actionUI;
-        public TextMeshProUGUI actionText;
-
         [SerializeField]
         protected string action = "Do Action";
 
         //인터렉티브 액션
+        private InteractiveUI aUI;
 
         #endregion
 
@@ -39,6 +31,9 @@ namespace MyFps
         {
             //참조
             collider = GetComponent<Collider>();
+
+            aUI = GameObject.Find("GameHUD").GetComponent<InteractiveUI>();            
+
         }
 
         protected virtual void OnMouseOver()
@@ -74,16 +69,14 @@ namespace MyFps
         #region Custom Method
         protected virtual void ShowActionUI()
         {
-            actionUI.SetActive(true);
-            actionText.text = action;
-            extraCross.SetActive(true);
+            aUI.ShowActionUI(action);
         }
 
         protected virtual void HideActionUI()
         {
-            actionUI.SetActive(false);
-            actionText.text = "";
-            extraCross.SetActive(false);
+            
+            aUI.HideActionUI();
+            
         }
 
         #endregion

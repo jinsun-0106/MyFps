@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477736}
   - component: {fileID: 10844700}
-  - component: {fileID: 8968021369446678285}
+  - component: {fileID: 7620052005286425323}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -43,9 +43,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.89148086, g: 0.21323532, b: 1, a: 1}
+  m_Color: {r: 0.76924664, g: 0.058072258, b: 0.8207547, a: 1}
   m_Intensity: 1.5
-  m_Range: 6
+  m_Range: 10
   m_SpotAngle: 165
   m_InnerSpotAngle: 159.24054
   m_CookieSize: 10
@@ -98,7 +98,7 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &8968021369446678285
+--- !u!114 &7620052005286425323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
