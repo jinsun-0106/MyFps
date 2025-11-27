@@ -75,11 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626a8d88838054d409be9dfec610ef2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraCross: {fileID: 0}
-  actionUI: {fileID: 0}
-  actionText: {fileID: 0}
   action: Get some bullets
-  giveAmmo: 7
+  giveAmmo: 10
 --- !u!1 &1252632281494882676
 GameObject:
   m_ObjectHideFlags: 0

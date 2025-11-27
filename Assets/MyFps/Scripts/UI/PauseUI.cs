@@ -60,9 +60,10 @@ namespace MyFps
 
         public void MainMenu()
         {
-            //Time.timeScale = 0.0f;
-            //fader.FadeTo(loadToScene);
+            fader.FadeTo(loadToScene);
             Debug.Log("Go To MainMenu");
+            Time.timeScale = 1.0f;
+            PlayerStats.Instance.SetWeaponType(WeaponType.None);
         }
         #endregion
     }

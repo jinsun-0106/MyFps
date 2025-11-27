@@ -13,7 +13,7 @@ namespace MyFps
         //씬 이동
         public SceneFader fader;
         [SerializeField]
-        private string backToScene = "PlayScene";
+        private string backToScene = "PlayScene01";
         [SerializeField]
         private string loadToScene = "MainMenu";
 
@@ -42,7 +42,7 @@ namespace MyFps
         public void MainMenu()
         {
             Debug.Log("Go to MainMenu");
-            //fader.FadeTo(loadToScene);
+            fader.FadeTo(loadToScene);
         }
 
         #endregion

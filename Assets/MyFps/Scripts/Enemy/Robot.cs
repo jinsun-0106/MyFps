@@ -37,6 +37,8 @@ namespace MyFps
 
         //이동
         [SerializeField] private float moveSpeed = 5f;
+        private float currentSpeed;
+        private float hurtSpeed = 0f;
 
         //이동 타겟 - 플레이어
         private Transform thePlayer;
@@ -77,6 +79,7 @@ namespace MyFps
             //참조
             //thePlayer = GameObject.Find("Robot").transform;               //=> 밑이 더 안정적
             thePlayer = FindFirstObjectByType<PlayerMove>().transform;
+            currentSpeed = moveSpeed;
         }
         private void Start()
         {
@@ -90,6 +93,15 @@ namespace MyFps
         }
         private void Update()
         {
+            if (CannotMove)
+            {
+                currentSpeed = hurtSpeed;
+            }
+            else
+            {
+                currentSpeed = moveSpeed;
+            }
+
             //타겟팅
             Vector3 targetPosition = new Vector3(thePlayer.position.x, thePlayer.position.y, thePlayer.position.z);
             Vector3 dir = targetPosition - transform.position;
@@ -113,7 +125,7 @@ namespace MyFps
 
                 //플레이어를 향해 걷기, 플레이어와의 거리가 2 이내가 되면 공격 상태로 전환
                 case RobotState.R_Walk:
-                    transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
+                    transform.Translate(dir.normalized * Time.deltaTime * currentSpeed, Space.World);
 
                     //플레이어와의 거리가 2 이내가 되면 공격 상태로 전환
                     if(distance <= attackRange)
@@ -186,15 +198,10 @@ namespace MyFps
             enemyHP -= damage;
             Debug.Log($"Robot HP: {enemyHP}");
 
-            animator.SetTrigger("IsHurt");
-
-            if(CannotMove)
-            {
-
-            }
+            animator.SetTrigger("IsHurt");                      
 
             //죽음체크 - 두번 죽이지 마라
-            if(enemyHP <= 0f && isDeath == false)
+            if (enemyHP <= 0f && isDeath == false)
             {
                 Die();
             }
