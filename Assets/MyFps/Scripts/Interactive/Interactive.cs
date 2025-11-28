@@ -50,11 +50,14 @@ namespace MyFps
             //만약 Action 버튼을 누르면
             if (Input.GetButtonDown("Action"))
             {
-                //Do Action 영역 - 인터렉티브 액션
-                DoAction();
 
                 //충돌체 제거
                 collider.enabled = false;
+
+                HideActionUI();
+
+                //Do Action 영역 - 인터렉티브 액션
+                DoAction();
 
             }
 

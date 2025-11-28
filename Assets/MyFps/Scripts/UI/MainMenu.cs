@@ -36,9 +36,6 @@ namespace MyFps
             //버튼 효과음
             AudioManager.Instance.Play("ButtonHit");
 
-            //플레이어 데이터 초기화
-            //PlayerStats.Instance.SetWeaponType(WeaponType.None);
-
             fader.FadeTo(loadToScene);
         }
 
@@ -51,7 +48,7 @@ namespace MyFps
 
         public void Option()
         {
-            AudioManager.Instance.PlayBGM("SHAmb");
+            //AudioManager.Instance.PlayBGM("SHAmb");
 
             Debug.Log("Option버튼 클릭");
         }

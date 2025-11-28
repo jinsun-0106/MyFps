@@ -5,7 +5,7 @@ using System.Collections;
 namespace MyFps
 {
     /// <summary>
-    /// 플레이씬의 오프닝 연출
+    /// 플레이씬01의 오프닝 연출
     /// </summary>
     public class AOpening : MonoBehaviour
     {

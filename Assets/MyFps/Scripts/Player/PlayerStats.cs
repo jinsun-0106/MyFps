@@ -34,9 +34,13 @@ namespace MyFps
         {
             base.Awake();
 
-            //플레이어 데이터 초기화
+            //플레이어 데이터 초기화, 치팅
             ammoCount = 0;
             weaponType = WeaponType.None;
+
+            //To Do: cheating
+            weaponType = WeaponType.Pistol;
+
         }
 
         private void Update()

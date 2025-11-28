@@ -17,7 +17,8 @@ namespace MyFps
 
         //씬 이동
         public SceneFader fader;
-        private string loadToScene = "NextScene";
+        [SerializeField]
+        private string loadToScene = "PlayScene02";
 
         #endregion
 
@@ -50,7 +51,7 @@ namespace MyFps
 
             yield return new WaitForSeconds(1f);
 
-            //fader.FadeTo(loadToScene);
+            fader.FadeTo(loadToScene);
             Debug.Log($"Go to {loadToScene}");
         }
         #endregion

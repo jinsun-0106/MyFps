@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MyFps
 {
@@ -18,6 +19,9 @@ namespace MyFps
 
         //애니메이터 파라미터
         const string IsOpen = "IsOpen";
+
+        public UnityAction OnActivate;
+        public UnityAction OnDeactivate;
         #endregion
 
         #region Property
@@ -48,11 +52,17 @@ namespace MyFps
         public void Activate()
         {
             IsActive = true;
+
+            //활성화시 등록된 함수 호출
+            OnActivate?.Invoke();
         }
 
         public void Deactivate()
         {
             IsActive = false;
+
+            //활성화시 등록된 함수 호출
+            OnDeactivate?.Invoke();
         }
 
         #endregion
