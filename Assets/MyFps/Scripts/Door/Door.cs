@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace MyFps
 {
     /// <summary>
-    /// 문(door) 열기/ 닫기
+    /// 문(door) 열기/닫기
     /// </summary>
     public class Door : MonoBehaviour, ISwitchable
     {
@@ -12,31 +12,31 @@ namespace MyFps
         //참조
         protected Animator animator;
 
+        //true면 문이 열려 있는 상태, false면 닫혀있는 상태
+        [SerializeField]
         protected bool isActive;
-
-        //사운드
-
-
-        //애니메이터 파라미터
-        const string IsOpen = "IsOpen";
 
         public UnityAction OnActivate;
         public UnityAction OnDeactivate;
+
+        //사운드
+
+        //애니메이터 파라미터
+        const string IsOpen = "IsOpen";
         #endregion
 
         #region Property
         public bool IsActive
         {
             get { return isActive; }
-            set 
-            { 
+            set
+            {
                 isActive = value;
                 animator.SetBool(IsOpen, value);
 
                 //사운드 플레이
             }
         }
-
         #endregion
 
         #region Unity Event Method
@@ -46,6 +46,14 @@ namespace MyFps
             animator = GetComponent<Animator>();
         }
 
+        protected virtual void Start()
+        {
+            //문 상태 열림/닫힘 설정
+            if (isActive)
+            {
+                Activate();
+            }
+        }
         #endregion
 
         #region Custom Method
@@ -61,11 +69,9 @@ namespace MyFps
         {
             IsActive = false;
 
-            //활성화시 등록된 함수 호출
+            //비 활성화시 등록된 함수 호출
             OnDeactivate?.Invoke();
         }
-
         #endregion
-
     }
 }

@@ -215,8 +215,11 @@ namespace MyFps
             //죽는 상태로 변경
             SetState(RobotState.R_Death);
 
-            //리워드
-            Instantiate(rewardAmmo,this.transform.position,Quaternion.identity);
+            if(rewardAmmo != null)
+            {
+                //리워드
+                Instantiate(rewardAmmo, this.transform.position, Quaternion.identity);
+            }
         }
 
         //공격
