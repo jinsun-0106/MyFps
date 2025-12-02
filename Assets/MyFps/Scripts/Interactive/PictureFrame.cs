@@ -9,13 +9,9 @@ namespace MyFps
         #region Variables
         //도어스위치
         public GameObject doorSwitch;
-
-        //눈
+        //눈 퍼즐 조각
         public GameObject leftEye;
         public GameObject rightEye;
-
-        private PuzzleItem left = PuzzleItem.LeftEye;
-        private PuzzleItem right = PuzzleItem.RightEye;
 
         //시퀀스 텍스트
         public TextMeshProUGUI squenceText;
@@ -35,8 +31,11 @@ namespace MyFps
 
         IEnumerator MakePicture()
         {
-            
-            if(PlayerStats.Instance.HavePuzzleItem(left))
+            bool isLeft = PlayerStats.Instance.HavePuzzleItem(PuzzleItem.LeftEye);
+            bool isRight = PlayerStats.Instance.HavePuzzleItem(PuzzleItem.RightEye);
+
+            //퍼즐 조각 맞추기
+            if (isLeft)
             {
                 LeftEyePiece();
 
@@ -45,7 +44,7 @@ namespace MyFps
                 //충돌체 복구
                 collider.enabled = true;
 
-                if (PlayerStats.Instance.HavePuzzleItem(right))
+                if (isRight)
                 {
                     RighteyePiece();
                     isDone = true;
@@ -61,7 +60,7 @@ namespace MyFps
                 }
 
             }
-            else if(PlayerStats.Instance.HavePuzzleItem(right))
+            if(isRight)
             {
                 RighteyePiece();
 
@@ -70,7 +69,7 @@ namespace MyFps
                 //충돌체 복구
                 collider.enabled = true;
 
-                if (PlayerStats.Instance.HavePuzzleItem(left))
+                if (isLeft)
                 {
                     LeftEyePiece();
                     isDone = true;
@@ -93,13 +92,12 @@ namespace MyFps
                 collider.enabled = true;
             }
 
-            if(isDone)
+            //모든 조각을 다 맞추었는지 체크
+            if (isDone)
             {
                 doorSwitch.SetActive(true);
             }
 
-            
-            
         }
 
 

@@ -51,7 +51,7 @@ namespace MyFps
 
             //플레이어 데이터 초기화, 치팅
             ammoCount = 0;
-            weaponType = WeaponType.None;
+            //weaponType = WeaponType.None;
             puzzleItems = new bool[(int)PuzzleItem.MaxPuzzleItem];
 
             //To Do: cheating
@@ -99,13 +99,26 @@ namespace MyFps
         //매개변수로 입력 받은 퍼즐 아이템 획득 여부
         public bool HavePuzzleItem(PuzzleItem puzzleItem)
         {
+            //아이템이 없다
+            if (puzzleItem == PuzzleItem.None || puzzleItem == PuzzleItem.MaxPuzzleItem)
+            {
+                Debug.Log("Out of range");
+                return false; 
+            }
+
             return puzzleItems[(int)puzzleItem];
         }
 
-        //퍼즐 아이템 획득
-        public void GainPuzzleItem(PuzzleItem puzzleItem)
+        //퍼즐 아이템 획득, 성공/실패 처리
+        public bool GainPuzzleItem(PuzzleItem puzzleItem)
         {
+            //획득 실패
+            if(puzzleItem == PuzzleItem.None || puzzleItem == PuzzleItem.MaxPuzzleItem)
+                { return false; }
+
+            //획득 성공
             puzzleItems[(int)puzzleItem] = true;
+            return true;
         }
         #endregion
 
