@@ -3,22 +3,16 @@ using System.Collections;
 
 namespace MyFps
 {
-    public class DExitTrigger : MonoBehaviour
+    public class GExitTrigger : MonoBehaviour
     {
         #region Variables
         //참조: 충돌체
-        private BoxCollider boxCollider;
-
-        //시퀀스
-        public Door door;
-
-        //사운드
-        public AudioSource bgm02;
+        private BoxCollider boxCollider;      
 
         //씬 이동
         public SceneFader fader;
         [SerializeField]
-        private string loadToScene = "PlayScene02";
+        private string loadToScene = "MainMenu";
 
         #endregion
 
@@ -41,10 +35,8 @@ namespace MyFps
         #region Custom Method
         IEnumerator SequencePlay()
         {
-            //문 열기
-            door.Activate();
-
-            bgm02.Stop();
+            //배경음 종료
+            AudioManager.Instance.StopBGM();
 
             //씬 종료시 구현 내용
             //....
@@ -52,7 +44,6 @@ namespace MyFps
             yield return new WaitForSeconds(1f);
 
             fader.FadeTo(loadToScene);
-            Debug.Log($"Go to {loadToScene}");
         }
         #endregion
     }
