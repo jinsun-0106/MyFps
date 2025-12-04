@@ -46,6 +46,10 @@ namespace MyFps
         private float idleTimer = 2f;
         private float countdown = 0f;
 
+        //맞을 때
+        private float currentSpeed;
+        private float hurtSpeed = 0f;
+
         //상태 - 패트롤
         public Transform[] wayPoints;
         private int wayPointIndex = 0;
@@ -69,6 +73,18 @@ namespace MyFps
         private bool isBack = false;
         #endregion
 
+        #region Property
+        //애니메이터의 파라미터값(CannotMove) 읽어오기
+        public bool CannotMove
+        {
+            get
+            {
+                return animator.GetBool("CannotMove");
+            }
+        }
+
+        #endregion
+
         #region Unity Event Method
         private void Awake()
         {
@@ -86,6 +102,8 @@ namespace MyFps
             wayPointIndex = 0;
             startPosition = transform.position;
 
+            currentSpeed = agent.velocity.magnitude;
+
             SetState(EnemyState.E_Idle);
         }
 
@@ -93,6 +111,15 @@ namespace MyFps
         {
             //죽음 체크
             if (isDeath) return;
+
+            if (CannotMove)
+            {
+                currentSpeed = hurtSpeed;
+            }
+            else
+            {
+                currentSpeed = agent.velocity.magnitude;
+            }
 
             //디텍팅
             float distance = Vector3.Distance(thePlayer.position, transform.position);
@@ -251,7 +278,7 @@ namespace MyFps
             enemyHP -= damage;
             
             //효과(vfx, sfx), UI처리, 애니메이션 등
-            //animator.SetTrigger("IsHurt");
+            animator.SetTrigger("IsHurt");
 
             //죽음체크 - 두번 죽이지 마라
             if (enemyHP <= 0f && isDeath == false)

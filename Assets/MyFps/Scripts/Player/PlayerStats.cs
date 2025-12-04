@@ -28,6 +28,9 @@ namespace MyFps
     public class PlayerStats : PersistantSingleton<PlayerStats>
     {
         #region Variables
+        //씬 번호
+        private int sceneNumber;
+
         //탄환 갯수
         private int ammoCount;
 
@@ -40,6 +43,7 @@ namespace MyFps
         #endregion
 
         #region Property
+        public int SceneNumber { get { return sceneNumber; } }
         public int AmmoCount { get { return ammoCount; } }
         public WeaponType WeaponType { get { return weaponType; } }
         #endregion
@@ -51,11 +55,11 @@ namespace MyFps
 
             //플레이어 데이터 초기화, 치팅
             ammoCount = 0;
-            //weaponType = WeaponType.None;
+            weaponType = WeaponType.None;
             puzzleItems = new bool[(int)PuzzleItem.MaxPuzzleItem];
 
             //To Do: cheating
-            weaponType = WeaponType.Pistol;
+            //weaponType = WeaponType.Pistol;
 
         }
 
@@ -69,11 +73,17 @@ namespace MyFps
         #endregion
 
         #region Custom Method
+        //씬 번호 대입하기
+        public void SetSceneNumber(int number)
+        {
+            sceneNumber = number;
+        }
+
         // ammo 추가하기
         public void AddAmmo(int amount)
         {
             ammoCount += amount;
-            Debug.Log($"ammoCont: {ammoCount}");
+            //Debug.Log($"ammoCont: {ammoCount}");
         }
 
         // ammo 사용하기
@@ -86,7 +96,7 @@ namespace MyFps
             }
 
             ammoCount -= amount;
-            Debug.Log($"ammoCont: {ammoCount}");
+            //Debug.Log($"ammoCont: {ammoCount}");
             return true;
         }
 

@@ -40,7 +40,7 @@ namespace MyFps
         public void TakeDamage(float damage)
         {
             playerHP -= damage;
-            Debug.Log($"Player HP: {playerHP}");
+            //Debug.Log($"Player HP: {playerHP}");
 
             //데미지 이펙트
             onDamage?.Invoke();
