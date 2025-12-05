@@ -30,12 +30,18 @@ namespace MyFps
         #region Variables
         //씬 번호
         private int sceneNumber;
+        private string sceneName;
 
         //탄환 갯수
         private int ammoCount;
 
         //소지 무기 타입
         private WeaponType weaponType;
+
+        //플레이어 체력
+        private float playerHP;
+        [SerializeField]
+        private float maxPlayerHP = 30;
 
         //퍼즐 아이템 획득 여부
         [SerializeField]
@@ -44,8 +50,10 @@ namespace MyFps
 
         #region Property
         public int SceneNumber { get { return sceneNumber; } }
+        public string SceneName { get { return sceneName; } }
         public int AmmoCount { get { return ammoCount; } }
         public WeaponType WeaponType { get { return weaponType; } }
+        public float PlayerHP { get { return playerHP; } }
         #endregion
 
         #region Unity Event Method
@@ -53,12 +61,8 @@ namespace MyFps
         {
             base.Awake();
 
-            //플레이어 데이터 초기화, 치팅
-            ammoCount = 0;
-            weaponType = WeaponType.None;
-            puzzleItems = new bool[(int)PuzzleItem.MaxPuzzleItem];
-
             //To Do: cheating
+            //PlayerStatsInitialize(null);
             //weaponType = WeaponType.Pistol;
 
         }
@@ -73,10 +77,49 @@ namespace MyFps
         #endregion
 
         #region Custom Method
+        //플레이어 데이터 초기화
+        public void PlayerStatsInitialize(PlayData playData)
+        {
+            if(playData != null)
+            {
+                sceneNumber = playData.sceneNumber;
+                sceneName = playData.sceneName;
+                ammoCount = playData.ammoCount;
+                weaponType = GetWeaponType(playData.weaponType);
+                playerHP = playData.playerHP;
+            }
+            else
+            {
+                //처음 다운받고 처름 실행
+                //플레이어 데이터 초기화
+                sceneNumber = -1;
+                sceneName = string.Empty;
+                ammoCount = 0;
+                weaponType = WeaponType.None;
+                playerHP = maxPlayerHP;
+            }
+
+            puzzleItems = new bool[(int)PuzzleItem.MaxPuzzleItem];
+
+        }
+
+        //1번씬 데이터 초기값 설정
+        public void PlayerStatsInit()
+        {
+            ammoCount = 0;
+            weaponType = WeaponType.None;
+            playerHP = maxPlayerHP;
+        }
+
         //씬 번호 대입하기
         public void SetSceneNumber(int number)
         {
             sceneNumber = number;
+        }
+
+        public void SetSceneName(string name)
+        {
+            sceneName = name;
         }
 
         // ammo 추가하기
@@ -106,6 +149,19 @@ namespace MyFps
             weaponType = type;
         }
 
+        //
+        private WeaponType GetWeaponType(int type)
+        {
+            switch (type)
+            {
+                case 0: return WeaponType.None;
+                case 1: return WeaponType.Pistol;
+                case 2: return WeaponType.Healmatic;
+            }
+
+            return WeaponType.None;
+        }
+
         //매개변수로 입력 받은 퍼즐 아이템 획득 여부
         public bool HavePuzzleItem(PuzzleItem puzzleItem)
         {
@@ -130,6 +186,14 @@ namespace MyFps
             puzzleItems[(int)puzzleItem] = true;
             return true;
         }
+
+        //체력 저장
+        public void SetHP(float value)
+        {
+            playerHP = value;
+        }
+
+
         #endregion
 
     }

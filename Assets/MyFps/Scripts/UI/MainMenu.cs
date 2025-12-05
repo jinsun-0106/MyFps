@@ -46,7 +46,7 @@ namespace MyFps
             GameDataInit();
 
             //로드게임 버튼 세팅
-            if(sceneNumber < 0)
+            if(PlayerStats.Instance.SceneNumber < 0)
             {
                 loadGameButton.SetActive(false);
             }
@@ -82,7 +82,7 @@ namespace MyFps
             AudioManager.Instance.Play("ButtonHit");
             Debug.Log("LoadGame버튼 클릭");
 
-            fader.FadeTo(sceneNumber);
+            fader.FadeTo(PlayerStats.Instance.SceneNumber);
         }
 
         public void Option()
@@ -189,8 +189,11 @@ namespace MyFps
             LoadOptions();
 
             //플레이 데이터
-            sceneNumber = PlayerPrefs.GetInt(SceneNumber, -1);
-            SaveLoad.SaveData();
+            //sceneNumber = PlayerPrefs.GetInt(SceneNumber, -1);
+            PlayData playData = SaveLoad.LoadData();
+
+            //PlayerStats의 데이터 초기화
+            PlayerStats.Instance.PlayerStatsInitialize(playData);
         }
         #endregion
     }

@@ -19844,6 +19844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2023450446}
   - component: {fileID: 2023450445}
+  - component: {fileID: 2023450447}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -19885,6 +19886,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2023450447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023450444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2273a416c9c2b4ab3d4c7bd41757cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2026156110
 GameObject:
   m_ObjectHideFlags: 0
@@ -22152,6 +22165,10 @@ PrefabInstance:
     - target: {fileID: 4089102301300279674, guid: c5670e81c98595640944c80f6c0a2718, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313236143084333497, guid: c5670e81c98595640944c80f6c0a2718, type: 3}
+      propertyPath: maxPlayerHP
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

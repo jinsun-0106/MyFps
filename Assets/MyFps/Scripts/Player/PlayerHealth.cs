@@ -30,7 +30,7 @@ namespace MyFps
         private void Start()
         {
             //초기화
-            playerHP = playerMaxHP;
+            playerHP = PlayerStats.Instance.PlayerHP;
         }
 
         #endregion
@@ -41,6 +41,8 @@ namespace MyFps
         {
             playerHP -= damage;
             //Debug.Log($"Player HP: {playerHP}");
+
+            PlayerStats.Instance.SetHP(playerHP);
 
             //데미지 이펙트
             onDamage?.Invoke();
