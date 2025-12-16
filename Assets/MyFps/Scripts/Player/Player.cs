@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using NUnit.Framework.Constraints;
 
 namespace MyFps
 {

@@ -20,6 +20,9 @@ namespace MyFps
 
         public CinemachineSplineCart cart;
         private bool isArrive = false;              //카트 도착 여부
+
+        //데미지 이펙트
+        public GameObject damageUI;
         #endregion
 
         #region Unity Event Method
@@ -72,7 +75,10 @@ namespace MyFps
             yield return new WaitForSeconds(2f);
 
             lights.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
+
+            //화면 전체 빨간색 플래쉬 효과
+            damageUI.SetActive(true);
             //화면 흔들림 효과
             CinemachineShake.Instance.ShakeCamera(4f, 2f, 0.5f);
             yield return new WaitForSeconds(0.5f);
