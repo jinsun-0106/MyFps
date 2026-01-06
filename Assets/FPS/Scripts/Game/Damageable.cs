@@ -1,4 +1,3 @@
-using MyFpsUnity.FPS.Game;
 using UnityEngine;
 
 namespace Unity.FPS.Game
@@ -6,7 +5,7 @@ namespace Unity.FPS.Game
     /// <summary>
     /// 데미지를 입는 클래스
     /// </summary>
-    public class Damagable : MonoBehaviour
+    public class Damageable : MonoBehaviour
     {
         #region Variables
         //참조
@@ -14,7 +13,7 @@ namespace Unity.FPS.Game
 
         //데미지 계수
         [SerializeField]
-        private float damageMultiplier = 1f;                //데미지량에 따라 계수를 곱해서 데미지를 다르게 줌
+        private float damageMultiplier = 1f;
 
         //자신에게 입히는 데미지 계수
         [SerializeField]
@@ -26,7 +25,7 @@ namespace Unity.FPS.Game
         {
             //참조
             health = GetComponent<Health>();
-            if(health == null )
+            if(health == null)
             {
                 health = GetComponentInParent<Health>();
             }
@@ -34,17 +33,17 @@ namespace Unity.FPS.Game
         #endregion
 
         #region Custom Method
-        //damage: 데미지량, isExplosionDamage: 폭발 데미지 여부, damageSource: 데미지를 주는 주체
+        //damage: 데미지량, isExplosionDamage:폭발 데미지 여부, damageSource:데미지 주는 주체
         public void InflictDamage(float damage, bool isExplosionDamage, GameObject damageSource)
         {
             //health 체크
-            if(health == null)
+            if (health == null)
                 return;
 
             var totalDamage = damage;
 
             //폭발 데미지 여부
-            if(isExplosionDamage)
+            if (isExplosionDamage)
             {
                 totalDamage *= 1f;
             }

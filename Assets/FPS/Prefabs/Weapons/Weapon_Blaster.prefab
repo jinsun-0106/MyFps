@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2225486910712267856}
-  - component: {fileID: 4284846183998916413}
+  - component: {fileID: 8815721799451908891}
   - component: {fileID: 8090847488450120274}
   m_Layer: 7
   m_Name: Weapon_Blaster
@@ -163,7 +163,7 @@ Transform:
   - {fileID: 4917782838448717432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4284846183998916413
+--- !u!114 &8815721799451908891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,11 +172,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 2225486910712267859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f69dbadcfafb7c24ca63dbba2e9764d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 529b8a42bc8286e4aaf8bf4daa559e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRoot: {fileID: 1505447205160222267}
   switchWeaponSfx: {fileID: 8300000, guid: 2dfb4c13c4717394f86fb91936e37280, type: 3}
+  defalutCrossHair:
+    CrossHairSprite: {fileID: 0}
+    CorssHairSize: 0
+    CrossHairColor: {r: 0, g: 0, b: 0, a: 0}
+  targetInSightCrossHair:
+    CrossHairSprite: {fileID: 0}
+    CorssHairSize: 0
+    CrossHairColor: {r: 0, g: 0, b: 0, a: 0}
+  aimZoomRatio: 0.5
+  aimOffset: {x: 0, y: 0.075, z: 0}
+  shootType: 1
+  maxAmmo: 16
+  delayBeteenShots: 0.1
+  weaponMuzzle: {fileID: 8334323006752503713}
+  muzzleFlashPrefab: {fileID: 748781637555137343, guid: 9f671b22f25370048a18fb1f821294ec, type: 3}
+  shootSfx: {fileID: 8300000, guid: f8aa3709cb563bb4c8e6187d19a65b71, type: 3}
+  recoilForec: 0.5
+  prejectilePrefab: {fileID: 0}
+  bulletsPerShot: 1
+  bulletSpreadAngle: 0
 --- !u!82 &8090847488450120274
 AudioSource:
   m_ObjectHideFlags: 0
